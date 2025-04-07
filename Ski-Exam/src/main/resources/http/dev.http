@@ -1,0 +1,81 @@
+### GET all ski lessons
+GET http://localhost:7070/skilessons
+
+### GET ski lesson by ID
+GET http://localhost:7070/skilessons/1
+
+### POST a new ski lesson
+POST http://localhost:7070/skilessons
+Content-Type: application/json
+
+{
+  "name": "Night Powder",
+  "starttime": "2025-01-12T18:00:00",
+  "endtime": "2025-01-12T20:00:00",
+  "latitude": 47.5,
+  "longitude": 10.5,
+  "price": 599.99,
+  "level": "INTERMEDIATE"
+}
+
+### PUT update a ski lesson
+PUT http://localhost:7070/skilessons/1
+Content-Type: application/json
+
+{
+  "name": "Morning Cruise",
+  "starttime": "2025-01-10T08:00:00",
+  "endtime": "2025-01-10T10:00:00",
+  "latitude": 46.7,
+  "longitude": 9.7,
+  "price": 450.00,
+  "level": "BEGINNER"
+}
+
+### DELETE a ski lesson
+DELETE http://localhost:7070/skilessons/3
+
+### PUT add instructor to lesson
+PUT http://localhost:7070/skilessons/1/instructors/1
+
+### Filter by level
+GET http://localhost:7070/skilessons/filter?level=BEGINNER
+
+### Total price per instructor
+GET http://localhost:7070/skilessons/instructors/totalprice
+
+### GET all lessons by instructor
+GET http://localhost:7070/skilessons/instructor/1
+
+### Populate everything
+GET http://localhost:7070/populate/ski
+
+### Get lesson with instructions
+GET http://localhost:7070/skilessons/1
+
+### Get total instruction duration
+GET http://localhost:7070/skilessons/1/instructions/totalduration
+
+### Login som admin
+POST http://localhost:7070/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admintest",
+  "password": "admin123"
+}
+
+### Beskyttet oprettelse af lektion
+POST http://localhost:7070/api/skilessons
+Authorization: Bearer <DIT_TOKEN_HER>
+Content-Type: application/json
+
+{
+  "name": "Evening Ride",
+  "starttime": "2025-01-15T17:00",
+  "endtime": "2025-01-15T19:00",
+  "latitude": 47.2,
+  "longitude": 9.3,
+  "price": 399.95,
+  "level": "INTERMEDIATE"
+}
