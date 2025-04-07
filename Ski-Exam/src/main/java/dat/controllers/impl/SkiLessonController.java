@@ -76,10 +76,10 @@ public class SkiLessonController implements IController<SkiLessonDTO, Integer> {
 
     @Override
     public void update(Context ctx) throws ApiException {
-        //UserDTO user = ctx.attribute("user");
-        //if (!isAdmin(user)) {
-            //throw new ApiException(401, "Only ADMINs can update ski lessons");
-        //}
+        UserDTO user = ctx.attribute("user");
+        if (!isAdmin(user)) {
+            throw new ApiException(401, "Only ADMINs can update ski lessons");
+        }
 
         int id = Integer.parseInt(ctx.pathParam("id"));
         SkiLessonDTO dto = ctx.bodyAsClass(SkiLessonDTO.class);
@@ -94,10 +94,10 @@ public class SkiLessonController implements IController<SkiLessonDTO, Integer> {
 
     @Override
     public void delete(Context ctx) throws ApiException {
-//        UserDTO user = ctx.attribute("user");
-//        if (!isAdmin(user)) {
-//            throw new ApiException(401, "Only ADMINs can delete ski lessons");
-//        }
+        UserDTO user = ctx.attribute("user");
+        if (!isAdmin(user)) {
+            throw new ApiException(401, "Only ADMINs can delete ski lessons");
+        }
 
         int id = Integer.parseInt(ctx.pathParam("id"));
         if (!skiLessonDAO.validatePrimaryKey(id)) {
@@ -123,10 +123,10 @@ public class SkiLessonController implements IController<SkiLessonDTO, Integer> {
     }
 
     public void addInstructor(Context ctx) throws ApiException {
-//        UserDTO user = ctx.attribute("user");
-//        if (!isAdmin(user)) {
-//            throw new ApiException(401, "Only ADMINs can assign instructors");
-//        }
+        UserDTO user = ctx.attribute("user");
+        if (!isAdmin(user)) {
+            throw new ApiException(401, "Only ADMINs can assign instructors");
+        }
 
         int lessonId = Integer.parseInt(ctx.pathParam("lessonId"));
         int instructorId = Integer.parseInt(ctx.pathParam("instructorId"));
